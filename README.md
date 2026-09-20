@@ -34,9 +34,7 @@ The Arduino then sends the angle and distance data through the serial connection
 
 ![Radar Map Visualization](PXL_20241219_131605250.jpg)
 
-### Project Testing
 
-![Ultrasonic Radar Testing](Images/testing.jpg)
 
 ## Features
 
