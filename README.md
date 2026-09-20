@@ -7,7 +7,7 @@ The system rotates the ultrasonic sensor across a 180° range and measures the d
 
 ## Project Overview
 
-This project was developed as part of a university Arduino class.
+This project was developed in Group as part of a university Arduino class.
 
 The project combines hardware and software components to create a simple radar system:
 
@@ -20,6 +20,23 @@ The project combines hardware and software components to create a simple radar s
 The ultrasonic sensor is mounted on the servo motor. As the servo rotates, the Arduino takes distance measurements at different angles.
 
 The Arduino then sends the angle and distance data through the serial connection to the computer. The computer uses this information to display the detected objects on a radar map.
+## Project Gallery
+### Hardware Setup
+
+![Arduino Ultrasonic Radar Hardware](PXL_20241219_142143524.jpg)
+
+### Circuit and Connections
+
+![Arduino and Breadboard Circuit](PXL_20241219_135156201.jpg)
+![](PXL_20241219_142117900.jpg)
+
+### Radar Visualization
+
+![Radar Map Visualization](PXL_20241219_131605250.jpg)
+
+### Project Testing
+
+![Ultrasonic Radar Testing](Images/testing.jpg)
 
 ## Features
 
