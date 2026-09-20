@@ -1,26 +1,33 @@
-
 # Arduino Ultrasonic Radar
 
 An Arduino-based ultrasonic radar system built using an **Arduino Uno**, **HC-SR04 ultrasonic sensor**, and **servo motor**.
 
-The system rotates the ultrasonic sensor across a 180° range and measures the distance to objects at different angles. The collected **angle and distance data** is transmitted to a computer and displayed on a **radar-style map**, allowing detected objects to be visualized in real time.
+The system scans a 180° area, measures the distance to nearby objects, and sends angle and distance data to a computer. A **Processing-based radar visualization** displays the detected objects in real time.
+
+---
 
 ## Project Overview
 
-This project was developed in Group as part of a university Arduino class.
+This project was developed as a **group project** for a university Arduino class.
 
-The project combines hardware and software components to create a simple radar system:
+The goal was to create a simple radar-like system that combines hardware, sensors, servo control, serial communication, and real-time visualization.
 
-* **Arduino Uno** — controls the sensor and servo motor
-* **HC-SR04 Ultrasonic Sensor** — measures the distance to objects
-* **Servo Motor** — rotates the ultrasonic sensor
-* **Breadboard & Jumper Wires** — connect the electronic components
-* **Computer Radar Interface** — visualizes the measured objects on a radar-style map
+The system consists of:
 
-The ultrasonic sensor is mounted on the servo motor. As the servo rotates, the Arduino takes distance measurements at different angles.
+- **Arduino Uno** — controls the ultrasonic sensor and servo motor
+- **HC-SR04 Ultrasonic Sensor** — measures the distance to nearby objects
+- **Servo Motor** — rotates the ultrasonic sensor across the scanning area
+- **Breadboard & Jumper Wires** — connect the electronic components
+- **Processing Application** — receives serial data and displays the radar interface
 
-The Arduino then sends the angle and distance data through the serial connection to the computer. The computer uses this information to display the detected objects on a radar map.
+The ultrasonic sensor is mounted on the servo motor. As the servo rotates, the Arduino measures the distance to objects at different angles.
+
+The Arduino then sends the angle and distance data to the computer through a USB serial connection. The Processing application converts this information into a real-time radar-style visualization.
+
+---
+
 ## Project Gallery
+
 ### Hardware Setup
 
 ![Arduino Ultrasonic Radar Hardware](PXL_20241219_142143524.jpg)
@@ -28,65 +35,83 @@ The Arduino then sends the angle and distance data through the serial connection
 ### Circuit and Connections
 
 ![Arduino and Breadboard Circuit](PXL_20241219_135156201.jpg)
-![](PXL_20241219_142117900.jpg)
+
+![Arduino Circuit Setup](PXL_20241219_142117900.jpg)
 
 ### Radar Visualization
 
 ![Radar Map Visualization](PXL_20241219_131605250.jpg)
 
-
+---
 
 ## Features
 
-* 180° ultrasonic scanning
-* Automatic servo movement
-* Real-time distance measurement
-* Angle-based object detection
-* Serial communication between Arduino and computer
-* Radar-style graphical visualization
-* Real-time object mapping
-* Arduino Uno based
-* Low-cost hardware
+- 180° ultrasonic scanning
+- Automatic servo movement
+- Real-time distance measurement
+- Angle-based object detection
+- Serial communication between Arduino and computer
+- Processing-based radar visualization
+- Real-time object mapping
+- Low-cost hardware prototype
+
+---
+
+## Technologies Used
+
+- Arduino Uno
+- HC-SR04 Ultrasonic Sensor
+- Servo Motor
+- Breadboard
+- Jumper Wires
+- Arduino IDE
+- Processing
+- Serial Communication
+- Embedded Systems Prototyping
+
+---
 
 ## Components
 
-| Component                 | Quantity |
-| ------------------------- | -------: |
-| Arduino Uno               |        1 |
-| HC-SR04 Ultrasonic Sensor |        1 |
-| Servo Motor               |        1 |
-| Breadboard                |        1 |
-| Jumper Wires              |  Several |
-| USB Cable                 |        1 |
-| Computer                  |        1 |
+| Component | Quantity |
+|---|---:|
+| Arduino Uno | 1 |
+| HC-SR04 Ultrasonic Sensor | 1 |
+| Servo Motor | 1 |
+| Breadboard | 1 |
+| Jumper Wires | Several |
+| USB Cable | 1 |
+| Computer | 1 |
+
+---
 
 ## How It Works
 
 The system consists of two main parts:
 
-1. **Hardware**
-2. **Radar visualization software**
+1. **Hardware scanning**
+2. **Radar visualization**
 
 ### 1. Hardware Scanning
 
-The servo motor rotates the HC-SR04 ultrasonic sensor through a defined angle range.
+The servo motor rotates the HC-SR04 ultrasonic sensor across a defined angle range.
 
 At each angle:
 
-1. Arduino positions the servo.
+1. The Arduino positions the servo.
 2. The HC-SR04 sends an ultrasonic pulse.
 3. The pulse travels toward an object.
 4. The pulse reflects from the object.
 5. The sensor receives the returning echo.
-6. Arduino measures the echo time.
+6. The Arduino measures the echo time.
 7. The distance is calculated.
 8. The angle and distance are sent to the computer.
 
 ### 2. Radar Visualization
 
-The computer receives the measurements through the Arduino's serial connection.
+The computer receives the data through the Arduino's serial connection.
 
-The data contains two important values:
+The transmitted data contains two main values:
 
 ```text
 Angle + Distance
@@ -101,37 +126,41 @@ For example:
 120° → 80 cm
 ```
 
-The visualization software converts these measurements into positions on a radar-style map.
+The Processing application uses these measurements to display detected objects on a radar-style interface.
 
-The polar coordinates can be represented using:
+---
+
+## Radar Map
+
+The radar interface visualizes the area scanned by the ultrasonic sensor.
+
+The display includes:
+
+- Radar grid
+- Angle indicators
+- Distance markers
+- Moving scanning line
+- Detected objects
+- Real-time distance information
+
+As the servo rotates, the scanning line moves across the radar display. When an object is detected, its approximate position is displayed based on the measured angle and distance.
+
+The coordinates can be represented using:
 
 ```text
 X = Distance × cos(angle)
 Y = Distance × sin(angle)
 ```
 
-This allows the detected objects to be displayed according to their approximate position relative to the ultrasonic sensor.
+This converts the polar angle and distance measurements into approximate positions on the radar display.
 
-## Radar Map
-
-The radar visualization represents the area scanned by the ultrasonic sensor.
-
-A typical visualization contains:
-
-* A radar/grid background
-* Angle indicators
-* Distance markers
-* Scanning line
-* Detected objects
-* Real-time object positions
-
-As the servo rotates, the scanning line moves across the radar display. When an object is detected, its approximate position is shown according to its measured angle and distance.
+---
 
 ## Data Communication
 
 The Arduino communicates with the computer through a USB serial connection.
 
-The Arduino sends measurements similar to:
+The Arduino can send data in a format such as:
 
 ```text
 0,85
@@ -156,7 +185,9 @@ For example:
 
 means that an object was detected approximately **45 cm away at an angle of 30°**.
 
-The computer application reads this information and converts it into a graphical radar representation.
+The Processing application reads this data and updates the radar visualization in real time.
+
+---
 
 ## Distance Calculation
 
@@ -168,61 +199,76 @@ Distance = (Echo Time × Speed of Sound) / 2
 
 The division by two is necessary because the ultrasonic pulse travels from the sensor to the object and then returns to the sensor.
 
+---
+
 ## Wiring
 
-A typical connection is:
+A typical connection for this type of setup is shown below.
 
 ### HC-SR04 → Arduino Uno
 
-| HC-SR04 Pin | Arduino Uno    |
-| ----------- | -------------- |
-| VCC         | 5V             |
-| GND         | GND            |
-| TRIG        | Digital Pin 10 |
-| ECHO        | Digital Pin 11 |
+| HC-SR04 Pin | Arduino Uno |
+|---|---|
+| VCC | 5V |
+| GND | GND |
+| TRIG | Digital Pin 10 |
+| ECHO | Digital Pin 11 |
 
 ### Servo Motor → Arduino Uno
 
-| Servo Wire | Arduino Uno   |
-| ---------- | ------------- |
-| Signal     | Digital Pin 9 |
-| VCC        | 5V            |
-| GND        | GND           |
+| Servo Wire | Arduino Uno |
+|---|---|
+| Signal | Digital Pin 9 |
+| VCC | 5V |
+| GND | GND |
 
-> **Note:** The exact pins may be different depending on the code used in the original project. Check the Arduino sketch before connecting the circuit.
+> **Note:** The original source code is no longer available, so the exact pin configuration used in the original project may have been different.
 
-## Software Requirements
+---
+
+## Software
 
 ### Arduino
 
-* Arduino IDE
-* Arduino Uno
-* Arduino Servo library
+The Arduino side of the project was created using:
 
-### Radar Visualization
+- Arduino IDE
+- Arduino Servo library
+- Serial communication
 
-The radar visualization requires the computer-side program used to receive the serial data and draw the radar map.
+The Arduino program controlled the servo motor, measured distance using the HC-SR04 sensor, and sent the results to the computer.
 
-Depending on the original implementation, this may have been created using software such as:
+### Processing
 
-* Processing
-* Python
-* Java
-* Another serial visualization application
+The radar visualization was created using **Processing**.
 
-> The original visualization source code should be included in the repository if it is available.
+The Processing application received angle and distance data from the Arduino and displayed it on a radar-style interface.
+
+The interface included:
+
+- Moving radar sweep
+- Angle information
+- Distance information
+- Range markers
+- Detected object visualization
+
+> **Note:** The original Arduino and Processing source code used during the university project is no longer available. This repository documents the original project using photographs and project information. Reconstructed source code may be added later.
+
+---
 
 ## Installation
+
+If reconstructed source code is added to this repository, the project can be set up as follows.
 
 ### 1. Clone the Repository
 
 ```bash
-https://github.com/LukaTonia/ArduinoProject.git
+git clone https://github.com/LukaTonia/ArduinoProject.git
 ```
 
-### 2. Upload the Arduino Code
+### 2. Open the Arduino Project
 
-Open the Arduino `.ino` file in Arduino IDE.
+Open the `.ino` file in the Arduino IDE.
 
 Select:
 
@@ -230,28 +276,25 @@ Select:
 Tools → Board → Arduino Uno
 ```
 
-Select the correct USB/COM port and upload the program.
+Then select the correct USB/COM port.
 
-### 3. Connect the Arduino
+### 3. Upload the Arduino Code
 
-Connect the Arduino Uno to the computer using a USB cable.
+Connect the Arduino Uno to the computer using a USB cable and upload the sketch.
 
-### 4. Start the Radar Visualization
+### 4. Run the Processing Visualization
 
-Run the computer-side visualization program included in the repository.
-
-The visualization application should connect to the Arduino's serial port and begin receiving angle and distance measurements.
+Open the Processing radar visualization file and select the correct serial port.
 
 ### 5. Start Scanning
 
-Once the Arduino and visualization program are connected, the servo will rotate the ultrasonic sensor and the radar map will update with the detected objects.
+Once the Arduino and Processing application are connected, the servo rotates the sensor and the radar display updates with incoming measurements.
 
-
-```
+---
 
 ## Example Radar Data
 
-The Arduino may send data in the following format:
+Example serial data:
 
 ```text
 Angle: 0°   Distance: 85 cm
@@ -261,57 +304,106 @@ Angle: 30°  Distance: 45 cm
 Angle: 40°  Distance: 52 cm
 ```
 
-The visualization software converts this information into a graphical representation.
+The visualization application converts this information into a graphical radar representation.
+
+---
+
+## Team Project
+
+This project was completed collaboratively as part of a university course.
+
+The team worked together on:
+
+- Hardware assembly
+- Sensor integration
+- Arduino programming
+- Servo motor control
+- Serial communication
+- Testing and debugging
+- Radar visualization
+
+---
+
+## What We Learned
+
+This project provided practical experience with:
+
+- Arduino programming
+- Ultrasonic distance measurement
+- Servo motor control
+- Serial communication
+- Sensor integration
+- Breadboard prototyping
+- Real-time data visualization
+- Hardware and software integration
+- Team collaboration
+
+---
 
 ## Applications
 
-This project demonstrates concepts that can be applied to:
+The concepts demonstrated in this project can be applied to:
 
-* Object detection
-* Robotics
-* Obstacle detection
-* Autonomous systems
-* Distance measurement
-* Embedded systems
-* Sensor visualization
-* Serial communication
-* Real-time data visualization
+- Object detection
+- Robotics
+- Obstacle detection
+- Distance measurement
+- Embedded systems
+- Sensor visualization
+- Autonomous systems
+- Real-time monitoring
+
+---
 
 ## Limitations
 
-The system has some practical limitations:
+The system has several practical limitations:
 
-* Ultrasonic measurements can be affected by object shape and surface material.
-* Small or angled objects may not be detected reliably.
-* The HC-SR04 has a limited measurement range.
-* Servo movement introduces a delay between measurements.
-* The radar represents detected objects based on a single ultrasonic sensor.
-* The visualization provides an approximate representation rather than a precise 2D map.
-* Objects outside the sensor's scanning range cannot be detected.
+- Ultrasonic measurements can be affected by object shape and surface material.
+- Small or angled objects may be difficult to detect.
+- The HC-SR04 has a limited measurement range.
+- Servo movement introduces a delay between measurements.
+- The system uses only one ultrasonic sensor.
+- The radar visualization provides an approximate representation rather than a precise 2D map.
+
+---
 
 ## Future Improvements
 
 Possible improvements include:
 
-* Improving the radar graphical interface
-* Adding distance filtering
-* Improving object detection accuracy
-* Tracking moving objects
-* Adding multiple ultrasonic sensors
-* Adding an LCD/OLED display
-* Adding data logging
-* Improving scanning speed
-* Adding a custom PCB
-* Creating a more advanced 2D mapping system
-* Adding object labels and tracking
+- Reconstructing the original Arduino source code
+- Reconstructing the Processing radar visualization
+- Improving measurement filtering
+- Improving object detection accuracy
+- Adding multiple ultrasonic sensors
+- Increasing scanning speed
+- Adding data logging
+- Improving the graphical interface
+- Adding object tracking
+- Creating a more advanced 2D mapping system
+
+---
 
 ## Authors
+
+This project was developed collaboratively by:
 
 - **Luka Tonia** — [GitHub Profile](https://github.com/LukaTonia)
 - **Levan Japaridze** — [GitHub Profile](https://github.com/Japo8)
 
-University Arduino  Project
+---
 
+## Academic Context
 
+**University Arduino Project**
 
-You may modify and use the project for learning and academic purposes.
+Developed as part of a university Arduino and embedded systems class.
+
+---
+
+## License
+
+This project is provided for educational and portfolio purposes.
+
+You may use or modify the project for learning and academic purposes.
