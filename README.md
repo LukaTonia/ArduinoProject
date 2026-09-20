@@ -217,7 +217,7 @@ Depending on the original implementation, this may have been created using softw
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/arduino-ultrasonic-radar.git
+https://github.com/LukaTonia/ArduinoProject.git
 ```
 
 ### 2. Upload the Arduino Code
