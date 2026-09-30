@@ -390,7 +390,7 @@ Possible improvements include:
 This project was developed collaboratively by:
 
 - **Luka Tonia** — [GitHub Profile](https://github.com/LukaTonia)
-- **Levan Japaridze** — [GitHub Profile](https://github.com/Japo8)
+- **Levan Japaridze** — [GitHub Profile](https://github.com/Japo024)
 
 ---
 
